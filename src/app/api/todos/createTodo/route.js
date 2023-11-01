@@ -22,7 +22,7 @@ export async function POST(request) {
     });
 
     await todo.save();
-    console.log(todo);
+
     return NextResponse.json(todo, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });

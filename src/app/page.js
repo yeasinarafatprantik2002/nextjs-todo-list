@@ -27,7 +27,6 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(todo);
       await axios.post("/api/todos/createTodo", todo);
       setTodo({
         title: "",
@@ -42,37 +41,39 @@ const Home = () => {
       <h1 className=" bg-black text-white text-4xl p-3">Prantik's Todo List</h1>
       <form
         onSubmit={handleSubmit}
-        className="flex mt-8 items-center justify-center gap-4">
+        className=" flex mt-8 items-center justify-center gap-4">
         <input
           value={todo.title}
           onChange={(e) => setTodo({ ...todo, title: e.target.value })}
           type="text"
-          className="border-2 text-2xl border-black my-3 p-2 w-1/3"
+          className="  shadow-gray-400 shadow-md border-2 text-2xl border-black my-3 p-2 w-1/3 rounded"
           placeholder="Enter Title"
         />
         <input
           value={todo.description}
           onChange={(e) => setTodo({ ...todo, description: e.target.value })}
           type="text"
-          className="border-2 text-2xl border-black my-3 p-2 w-1/3"
+          className="  shadow-gray-400 shadow-md border-2 text-2xl border-black my-3 p-2 w-1/3 rounded"
           placeholder="Enter Description"
         />
         <button
-          className="bg-black text-white p-3 rounded font-bold"
+          className="bg-black text-white p-3 rounded font-bold  shadow-gray-400 shadow-md"
           type="submit">
           Add Task
         </button>
       </form>
       <div className="flex justify-center ">
-        <p className=" text-4xl font-bold m-9">
+        <p className=" border-2 border-black text-4xl font-bold m-9 p-4 rounded shadow-gray-400 shadow-md">
           {todos.length > 0 ? "Todo Lists" : "No Todo Added"}
         </p>
       </div>
-      <div className=" flex items-center justify-center ">
-        <div className=" border-2 border-black p-10 flex flex-col gap-4 items-center w-[1000px] h-[600px] overflow-y-scroll">
+      <div className=" flex items-center justify-center">
+        <div className=" border-2 border-black p-10 flex flex-col gap-4 items-center w-[1000px] h-[600px] overflow-y-scroll  shadow-gray-500 shadow-md">
           {todos.map((todo) => {
             return (
-              <div key={todo._id} className=" border-2 border-black p-5 w-full">
+              <div
+                key={todo._id}
+                className="  shadow-gray-400 shadow-md border-2 border-black p-5 w-full">
                 <h1 className="text-2xl font-bold">{todo.title}</h1>
                 <p className="text-xl">{todo.description}</p>
               </div>

@@ -16,7 +16,7 @@ const DeleteBtn = ({ id }) => {
   return (
     <button
       onClick={deleteTodo}
-      className=" bg-red-500 text-white p-2 rounded shadow-gray-400 shadow-md">
+      className=" bg-red-500 text-white p-2 rounded shadow-zinc-500 shadow-md">
       Delete
     </button>
   );

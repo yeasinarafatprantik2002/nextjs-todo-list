@@ -30,29 +30,24 @@ const updateTodoPage = ({ params }) => {
 
   return (
     <>
-      <Link href="/">
-        <h1 className="shadow-gray-400 shadow-md bg-black text-white text-4xl p-3">
-          Prantik's Todo List
-        </h1>
-      </Link>
       <div className="flex justify-center ">
-        <p className=" border-2 border-black text-4xl font-bold m-9 p-4 rounded shadow-gray-400 shadow-md">
+        <p className=" border-2 border-white text-4xl font-bold m-9 p-4 rounded shadow-zinc-500 shadow-md">
           Update Todo
         </p>
       </div>
-      <form className=" flex mt-8 items-center justify-center gap-4">
+      <form className=" flex mt-8 items-center justify-center gap-4 text-black">
         <input
           value={todo.title}
           onChange={(e) => setTodo({ ...todo, title: e.target.value })}
           type="text"
-          className="  shadow-gray-400 shadow-md border-2 text-2xl border-black my-3 p-2 w-1/3 rounded"
+          className="  shadow-zinc-500 shadow-md border-2 text-2xl border-white my-3 p-2 w-1/3 rounded"
           placeholder="Enter Title"
         />
         <input
           value={todo.description}
           onChange={(e) => setTodo({ ...todo, description: e.target.value })}
           type="text"
-          className="  shadow-gray-400 shadow-md border-2 text-2xl border-black my-3 p-2 w-1/3 rounded"
+          className="  shadow-zinc-500 shadow-md border-2 text-2xl border-white my-3 p-2 w-1/3 rounded"
           placeholder="Enter Description"
         />
         <UpdateBtn todoId={params.id} updateTodo={updateTodo} />

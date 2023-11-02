@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+import Header from "@/components/Header/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,7 +13,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="bg-zinc-700 text-white">
+        <Header />
         {children}
         <Toaster position="top-center" reverseOrder={false} />
       </body>

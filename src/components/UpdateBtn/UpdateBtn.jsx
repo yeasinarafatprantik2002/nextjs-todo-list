@@ -18,7 +18,7 @@ const UpdateBtn = ({ todoId, updateTodo }) => {
   return (
     <button
       onClick={updateTodoHandler}
-      className=" bg-blue-500 text-white p-2 rounded shadow-gray-400 shadow-md">
+      className=" bg-blue-500 text-white p-2 rounded shadow-zinc-500 shadow-md">
       Update
     </button>
   );

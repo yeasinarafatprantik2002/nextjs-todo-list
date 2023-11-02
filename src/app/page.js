@@ -43,7 +43,9 @@ const Home = () => {
     try {
       await axios.put(`/api/todos/isCompletedTodo/?id=${id}`, { isCompleted });
       if (isCompleted) {
-        toast.success("Todo Uncompleted");
+        toast.success("Todo Completed");
+      } else {
+        toast.error("Todo Uncompleted");
       }
     } catch (error) {
       console.log(error);
@@ -95,11 +97,27 @@ const Home = () => {
                         checked={todo.isCompleted}
                       />
                     </span>
-                    Title: {todo.title}.
+                    <span>
+                      {todo.isCompleted ? (
+                        <span className=" line-through">
+                          Title: {todo.title}.
+                        </span>
+                      ) : (
+                        <span>Title: {todo.title}.</span>
+                      )}
+                    </span>
                   </h1>
                   <p className="text-xl ">
-                    <span className="mr-2"></span>Description:{" "}
-                    {todo.description}
+                    <span className="mr-2"></span>
+                    <span>
+                      {todo.isCompleted ? (
+                        <span className=" line-through">
+                          Description: {todo.description}.
+                        </span>
+                      ) : (
+                        <span>Description: {todo.description}.</span>
+                      )}
+                    </span>
                   </p>
                   <div className=" mt-5 flex gap-4">
                     <DeleteBtn id={todo._id} />

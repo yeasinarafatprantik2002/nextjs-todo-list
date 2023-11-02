@@ -1,7 +1,8 @@
 "use client";
 import axios from "axios";
-
+import DeleteBtn from "@/components/DeleteBtn/DeleteBtn";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 const Home = () => {
   const [todos, setTodos] = useState([]);
@@ -28,6 +29,7 @@ const Home = () => {
     e.preventDefault();
     try {
       await axios.post("/api/todos/createTodo", todo);
+      alert("Todo Added");
       setTodo({
         title: "",
         description: "",
@@ -38,7 +40,9 @@ const Home = () => {
   };
   return (
     <>
-      <h1 className=" bg-black text-white text-4xl p-3">Prantik's Todo List</h1>
+      <h1 className="shadow-gray-400 shadow-md bg-black text-white text-4xl p-3">
+        Prantik's Todo List
+      </h1>
       <form
         onSubmit={handleSubmit}
         className=" flex mt-8 items-center justify-center gap-4">
@@ -71,12 +75,21 @@ const Home = () => {
         <div className=" border-2 border-black p-10 flex flex-col gap-4 items-center w-[1000px] h-[600px] overflow-y-scroll  shadow-gray-500 shadow-md">
           {todos.map((todo) => {
             return (
-              <div
-                key={todo._id}
-                className="  shadow-gray-400 shadow-md border-2 border-black p-5 w-full">
-                <h1 className="text-2xl font-bold">{todo.title}</h1>
-                <p className="text-xl">{todo.description}</p>
-              </div>
+              <React.Fragment key={todo._id}>
+                <div className="  shadow-gray-400 shadow-md border-2 border-black p-5 w-full flex flex-col items-start">
+                  <h1 className="text-2xl font-bold">{todo.title} :</h1>
+                  <hr />
+                  <p className="text-xl">{todo.description}</p>
+                  <div className=" mt-5 flex gap-4">
+                    <DeleteBtn id={todo._id} />
+                    <Link href={`/updateTodoPage/${todo._id}`}>
+                      <button className=" bg-blue-500 text-white p-2 rounded shadow-gray-400 shadow-md">
+                        Update
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </React.Fragment>
             );
           })}
         </div>

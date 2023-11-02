@@ -7,6 +7,7 @@ connect();
 export async function POST(request) {
   try {
     const reqBody = await request.json();
+    console.log(reqBody);
     const { title, description } = reqBody;
 
     if (!title || !description) {

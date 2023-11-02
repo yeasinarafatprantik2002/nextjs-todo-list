@@ -51,6 +51,11 @@ const updateTodoPage = ({ params }) => {
           placeholder="Enter Description"
         />
         <UpdateBtn todoId={params.id} updateTodo={updateTodo} />
+        <Link href="/">
+          <button className=" bg-green-500 text-white p-2 rounded shadow-zinc-500 shadow-md">
+            Home
+          </button>
+        </Link>
       </form>
     </>
   );

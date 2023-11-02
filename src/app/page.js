@@ -77,7 +77,7 @@ const Home = () => {
         </button>
       </form>
       <div className="flex justify-center ">
-        <p className=" border-2 border-white text-4xl font-bold m-9 p-4 rounded shadow-zinc-500 shadow-md">
+        <p className=" border-2 border-white text-2xl font-bold m-9 p-4 rounded shadow-zinc-500 shadow-md">
           {todos.length > 0 ? "Todo Lists" : "No Todo Added"}
         </p>
       </div>

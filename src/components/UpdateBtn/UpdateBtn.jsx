@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const UpdateBtn = ({ todoId, updateTodo }) => {
   const router = useRouter();
@@ -8,7 +9,7 @@ const UpdateBtn = ({ todoId, updateTodo }) => {
     e.preventDefault();
     try {
       await axios.put(`/api/todos/updateTodo/?id=${todoId}`, updateTodo);
-      alert("Todo Updated");
+      toast.success("Todo Updated");
       router.push("/");
     } catch (error) {
       console.log(error);

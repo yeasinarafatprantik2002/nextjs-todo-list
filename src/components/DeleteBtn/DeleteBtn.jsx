@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const DeleteBtn = ({ id }) => {
   const deleteTodo = async (e) => {
@@ -7,6 +8,7 @@ const DeleteBtn = ({ id }) => {
 
     try {
       await axios.get(`/api/todos/deleteTodo/${id}`);
+      toast.success("Todo Deleted");
     } catch (error) {
       console.log(error.message);
     }

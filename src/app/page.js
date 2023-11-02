@@ -3,6 +3,7 @@ import axios from "axios";
 import DeleteBtn from "@/components/DeleteBtn/DeleteBtn";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const [todos, setTodos] = useState([]);
@@ -23,17 +24,27 @@ const Home = () => {
       }
     };
     fetchTodos();
-  }, [todos]);
+  }, [todo, todos]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios.post("/api/todos/createTodo", todo);
-      alert("Todo Added");
+      toast.success("Todo Added");
       setTodo({
         title: "",
         description: "",
       });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const checkBoxHandler = async (id, isCompleted) => {
+    try {
+      await axios.put(`/api/todos/isCompletedTodo/?id=${id}`, { isCompleted });
+      if (isCompleted) {
+        toast.success("Todo Uncompleted");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -63,7 +74,7 @@ const Home = () => {
         <button
           className="bg-black text-white p-3 rounded font-bold  shadow-gray-400 shadow-md"
           type="submit">
-          Add Task
+          Add Todo
         </button>
       </form>
       <div className="flex justify-center ">
@@ -76,10 +87,20 @@ const Home = () => {
           {todos.map((todo) => {
             return (
               <React.Fragment key={todo._id}>
-                <div className="  shadow-gray-400 shadow-md border-2 border-black p-5 w-full flex flex-col items-start">
-                  <h1 className="text-2xl font-bold">{todo.title} :</h1>
-                  <hr />
-                  <p className="text-xl">{todo.description}</p>
+                <div className="  shadow-gray-400 shadow-md border-2 border-black p-5 w-full flex flex-col items-start justify-center">
+                  <h1 className="text-2xl font-bold">
+                    <span className="m-2">
+                      <input
+                        type="checkbox"
+                        onChange={(e) =>
+                          checkBoxHandler(todo._id, e.target.checked)
+                        }
+                        checked={todo.isCompleted}
+                      />
+                    </span>
+                    Title: {todo.title}.
+                  </h1>
+                  <p className="text-xl "><span className="mr-2"></span>Description: {todo.description}</p>
                   <div className=" mt-5 flex gap-4">
                     <DeleteBtn id={todo._id} />
                     <Link href={`/updateTodoPage/${todo._id}`}>

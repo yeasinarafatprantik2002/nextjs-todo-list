@@ -12,17 +12,16 @@ const Home = () => {
     title: "",
     description: "",
   });
+  const fetchTodos = async () => {
+    try {
+      const res = await axios.get("/api/todos/getTodo");
 
+      setTodos(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        const res = await axios.get("/api/todos/getTodo");
-
-        setTodos(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     fetchTodos();
   }, [todos]);
 

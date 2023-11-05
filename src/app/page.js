@@ -24,7 +24,7 @@ const Home = () => {
       }
     };
     fetchTodos();
-  }, [todo, todos]);
+  }, [todos]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -82,7 +82,7 @@ const Home = () => {
         </p>
       </div>
       <div className=" flex items-center justify-center">
-        <div className=" border-2 border-white p-10 flex flex-col gap-4 items-center w-[1000px] h-[600px] overflow-y-scroll  ">
+        <div className="  p-10 flex flex-col gap-4 items-center w-[1000px] max-h-[600px] overflow-y-scroll  ">
           {todos.map((todo) => {
             return (
               <React.Fragment key={todo._id}>
